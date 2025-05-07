@@ -16,13 +16,12 @@
 //     Якщо значення параметра gender — це рядок "male", функція повертає число 12053
 //     Якщо значення параметра gender — це рядок "female", функція повертає число 8863
 
-const getTotalBalanceByGender = (users, gender) => {
-  let totalBalance = 0;
+const getTotalBalanceByGender = (users, gender) =>
   users
     .filter((user) => user.gender === gender)
-    .map((user) => (totalBalance += user.balance));
-  return totalBalance;
-};
+    .reduce((totalBalance, user) => {
+      return totalBalance + user.balance;
+    }, 0);
 
 const clients = [
   {
